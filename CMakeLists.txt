@@ -42,6 +42,10 @@ target_include_directories(
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
+set(BUILD_SHARED_LIBS FALSE)
+add_subdirectory(libs/hidapi)
+target_link_libraries(${PROJECT_NAME} PRIVATE hidapi::hidapi)
+
 if(DEFINED CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     message(
         STATUS
@@ -82,12 +86,6 @@ install(TARGETS ${PROJECT_NAME}
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} # include
 )
 
-install(EXPORT "${PROJECT_NAME}Targets"
-    FILE "${PROJECT_NAME}Targets.cmake"
-    NAMESPACE ${namespace}::
-    DESTINATION cmake
-)
-
 include(CMakePackageConfigHelpers)
 
 # generate the version file for the config file
@@ -106,9 +104,4 @@ install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
     DESTINATION cmake
-)
-# generate the export targets for the build tree
-export(EXPORT "${PROJECT_NAME}Targets"
-    FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/${PROJECT_NAME}Targets.cmake"
-    NAMESPACE ${namespace}::
 )
