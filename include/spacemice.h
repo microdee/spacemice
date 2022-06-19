@@ -4,5 +4,5 @@
 
 namespace spacemice
 {
-    inline std::tuple<int, int, int> version() { return {0, 1, 0}; }
+    std::tuple<int, int, int> version();
 }
