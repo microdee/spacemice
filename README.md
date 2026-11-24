@@ -1,2 +1,1 @@
-# spacemice
-An open and free as in freedom C++ wrapper for 3DConnexion's 6DOF camera controller devices, without depending on their proprietary SDK.
+I forgot about this. I have a version of this internally which is working and structured better, this repo is archived then will be deleted.
